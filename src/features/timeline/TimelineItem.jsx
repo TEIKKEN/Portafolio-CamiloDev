@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Award } from 'lucide-react';
 import Icon from '@/components/ui/Icon/Icon';
@@ -19,17 +19,21 @@ const TimelineItem = ({ entry, index }) => {
   const { t } = useTranslation();
   const meta = TYPE_META[entry.type] ?? TYPE_META.experience;
   const copy = t.timeline.items[entry.id];
+  const transition = useMemo(
+    () => (reducedMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }),
+    [index, reducedMotion]
+  );
+  const initial = useMemo(() => ({ opacity: 0, x: reducedMotion ? 0 : -16 }), [reducedMotion]);
+  const whileInViewProps = useMemo(() => ({ opacity: 1, x: 0 }), []);
 
   return (
     <motion.li
       className={styles.item}
       style={{ '--item-accent': getAccentVar(meta.accent) }}
-      initial={{ opacity: 0, x: reducedMotion ? 0 : -16 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={initial}
+      whileInView={whileInViewProps}
       viewport={{ once: true, amount: 0.4 }}
-      transition={
-        reducedMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }
-      }
+      transition={transition}
     >
       <span className={styles.iconDot}>
         <Icon icon={meta.icon} size={16} />
