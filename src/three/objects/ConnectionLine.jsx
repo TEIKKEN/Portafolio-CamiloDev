@@ -20,8 +20,14 @@ const ConnectionLine = ({ start, end }) => {
 
   useFrame(() => {
     const target = activeMode === '3d-motion' ? 0.3 : 0;
-    opacityRef.current = THREE.MathUtils.lerp(opacityRef.current, target, 0.06);
-    if (materialRef.current) materialRef.current.opacity = opacityRef.current;
+    const nextOpacity = THREE.MathUtils.lerp(opacityRef.current, target, 0.06);
+
+    if (Math.abs(opacityRef.current - nextOpacity) > 1e-6) {
+      opacityRef.current = nextOpacity;
+      if (materialRef.current && Math.abs(materialRef.current.opacity - nextOpacity) > 1e-6) {
+        materialRef.current.opacity = nextOpacity;
+      }
+    }
   });
 
   return (
