@@ -1,0 +1,19 @@
+/**
+ * COLORS — Raw palette
+ * Solo los valores crudos de Project Atlas. El significado semántico
+ * (bg, text, border, etc.) vive en /styles/themes, no aquí.
+ */
+
+:root {
+  /* Base */
+  --color-obsidian: #070707;
+  --color-charcoal: #111111;
+  --color-fog: #ecece8;
+  --color-warm-ivory: #f8f6f1;
+
+  /* Accents */
+  --color-neo-mint: #6cf4c5;
+  --color-soft-amber: #ffbe5c;
+  --color-electric-coral: #ff6e5b;
+  --color-ice-cyan: #a9f7ff;
+}

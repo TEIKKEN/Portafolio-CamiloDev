@@ -1,0 +1,33 @@
+/**
+ * MOTION
+ * Duraciones y easings compartidos por todo el sitio (Framer Motion, GSAP
+ * y CSS transitions deberían leer de aquí, no hardcodear valores propios).
+ */
+
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-base: 350ms;
+  --duration-slow: 600ms;
+  --duration-slower: 900ms;
+}
+
+/**
+ * Red de seguridad a nivel de token: si el usuario pide reduce-motion,
+ * cualquier transition/animation que use estas variables queda casi
+ * instantánea automáticamente, incluso antes de que exista el
+ * AccessibilityContext completo de la Fase 5.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+}

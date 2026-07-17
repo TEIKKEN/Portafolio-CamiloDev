@@ -1,0 +1,12 @@
+.mask {
+  position: fixed;
+  inset: 0;
+  z-index: 997;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 180px at var(--mask-x, 50%) var(--mask-y, 50%),
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+}

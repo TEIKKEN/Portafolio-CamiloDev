@@ -1,0 +1,10 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-neo-mint), var(--color-ice-cyan));
+  transform-origin: left;
+  z-index: 200;
+}

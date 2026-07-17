@@ -1,0 +1,30 @@
+/**
+ * THEME — High Contrast
+ * Mismo patrón que dark.css, pero sin transparencias en bordes/texto.
+ */
+
+[data-theme='high-contrast'] {
+  color-scheme: dark;
+
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #000000;
+  --color-bg-elevated: #0a0a0a;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #ffffff;
+  --color-text-tertiary: #e0e0e0;
+
+  --color-border: #ffffff;
+  --color-border-hover: var(--color-neo-mint);
+
+  --color-accent-primary: var(--color-neo-mint);
+  --color-accent-secondary: var(--color-soft-amber);
+  --color-accent-tertiary: var(--color-electric-coral);
+  --color-accent-technical: var(--color-ice-cyan);
+
+  --color-focus-ring: #ffffff;
+}
+
+[data-theme='high-contrast'] :is(button, a, input, textarea, select) {
+  outline-offset: 2px;
+}

@@ -1,0 +1,45 @@
+export const SKILL_CATEGORIES = [
+  {
+    id: 'frontend',
+    index: '01',
+    label: 'Frontend',
+    accent: 'mint',
+    primary: ['React', 'JavaScript'],
+    secondary: ['Vite', 'CSS Modules'],
+  },
+  {
+    id: '3d-motion',
+    index: '02',
+    label: '3D & Motion',
+    accent: 'cyan',
+    primary: ['Three.js', 'React Three Fiber'],
+    secondary: ['Framer Motion', 'GSAP'],
+  },
+  {
+    id: 'accessibility',
+    index: '03',
+    label: 'Accessibility',
+    accent: 'amber',
+    primary: ['WCAG 2.2', 'ARIA'],
+  },
+  {
+    id: 'workflow',
+    index: '04',
+    label: 'Workflow',
+    accent: 'coral',
+    groups: [
+      { id: 'desarrollo', tools: ['Git', 'GitHub', 'VS Code'] },
+      { id: 'calidad', tools: ['ESLint', 'Prettier'] },
+      { id: 'diseño', tools: ['Figma'] },
+      { id: 'basicas', tools: ['Python', 'Java'] },
+    ],
+  },
+  {
+    id: 'ai-workflow',
+    index: '05',
+    label: 'AI Workflow',
+    accent: 'cyan',
+    primary: ['GitHub Copilot', 'ChatGPT', 'Claude'],
+    secondary: ['Prompt Engineering'],
+  },
+];

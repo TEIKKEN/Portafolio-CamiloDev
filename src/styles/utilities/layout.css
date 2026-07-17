@@ -1,0 +1,36 @@
+/**
+ * LAYOUT UTILITIES
+ * Breakpoints de referencia (deben coincidir con constants/breakpoints.js):
+ * mobile 480 · tablet 768 · laptop 1024 · desktop 1280 · wide 1536
+ */
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.container--narrow {
+  max-width: 960px;
+}
+
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.grid--12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+@media (max-width: 767px) {
+  .grid--12 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+}

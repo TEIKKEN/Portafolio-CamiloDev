@@ -1,0 +1,70 @@
+/**
+ * GLOBAL
+ *
+ * FUENTES — recomendación: instalar vía Fontsource en vez de auto-hospedar
+ * binarios a mano:
+ *
+ *   npm install @fontsource-variable/geist-sans @fontsource/instrument-serif
+ *
+ * y en main.jsx, ANTES de importar este archivo de estilos:
+ *
+ *   import '@fontsource-variable/geist-sans';
+ *   import '@fontsource/instrument-serif';
+ *
+ * Verifica el nombre exacto de font-family que expone cada paquete
+ * (usualmente 'Geist Sans' / 'Instrument Serif') y ajústalo en
+ * tokens/typography.css si difiere.
+ *
+ * Si prefieres auto-hospedar en su lugar, descomenta y coloca los
+ * archivos en src/assets/fonts/:
+ */
+/*
+@font-face {
+  font-family: 'Geist Sans';
+  src: url('../../assets/fonts/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('../../assets/fonts/InstrumentSerif-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+html {
+  background: var(--color-bg-primary);
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  letter-spacing: var(--tracking-normal);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+}
+
+/**
+ * Instrument Serif — SOLO para palabras puntuales dentro de un titular
+ * (Creative / Digital / Living / Experience). Nunca para párrafos.
+ * Uso: <span className="font-serif">Creative</span>
+ */
+.font-serif {
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tight);
+}

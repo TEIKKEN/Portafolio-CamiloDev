@@ -1,0 +1,186 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid transparent;
+  transition:
+    padding var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+.scrolled {
+  padding-block: var(--space-3);
+  background: color-mix(in srgb, var(--color-obsidian) 80%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-border);
+}
+
+.inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+}
+
+.logoImg {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+}
+
+.links {
+  display: flex;
+  gap: var(--space-7);
+}
+
+.link {
+  position: relative;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding-bottom: 2px;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-accent-primary);
+  transition: right var(--duration-base) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--color-text-primary);
+}
+
+.link[data-active='true'] {
+  color: var(--color-text-primary);
+}
+
+.link[data-active='true']::after {
+  right: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.cta {
+  font-size: var(--text-sm);
+  color: var(--color-accent-primary);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.cta:hover {
+  background: color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+}
+
+.langToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.langToggle:hover {
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+}
+
+.mobileToggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+}
+
+.mobilePanel {
+  overflow: hidden;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-obsidian);
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--container-padding-x) 0;
+}
+
+.mobileLink {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-4) 0;
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+  background: none;
+  cursor: pointer;
+}
+
+.mobileLink[data-active='true'] {
+  color: var(--color-accent-primary);
+}
+
+.mobileCta {
+  display: block;
+  width: calc(100% - 2 * var(--container-padding-x));
+  margin: var(--space-5) var(--container-padding-x) var(--space-6);
+  padding: var(--space-3);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-obsidian);
+  background: var(--color-accent-primary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .links {
+    display: none;
+  }
+  .cta {
+    display: none;
+  }
+  .mobileToggle {
+    display: flex;
+  }
+}

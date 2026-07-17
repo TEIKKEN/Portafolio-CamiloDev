@@ -1,0 +1,23 @@
+/**
+ * SHADOWS & ELEVATION
+ * Sobre fondo obsidian, la "luz" comunica más que la sombra —de ahí los
+ * glows de acento junto a la escala de elevación estándar.
+ */
+
+:root {
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.6);
+
+  --glow-mint: 0 0 40px color-mix(in srgb, var(--color-neo-mint) 30%, transparent);
+  --glow-amber: 0 0 40px color-mix(in srgb, var(--color-soft-amber) 30%, transparent);
+  --glow-coral: 0 0 40px color-mix(in srgb, var(--color-electric-coral) 30%, transparent);
+  --glow-cyan: 0 0 40px color-mix(in srgb, var(--color-ice-cyan) 30%, transparent);
+
+  --elevation-0: none;
+  --elevation-1: var(--shadow-sm);
+  --elevation-2: var(--shadow-md);
+  --elevation-3: var(--shadow-lg);
+  --elevation-4: var(--shadow-xl);
+}

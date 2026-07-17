@@ -1,0 +1,15 @@
+.card {
+  position: relative;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.hoverable:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}

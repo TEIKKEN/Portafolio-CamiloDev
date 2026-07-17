@@ -1,0 +1,29 @@
+/**
+ * THEME — Dark (default)
+ * Traduce la paleta cruda de tokens/colors.css a roles semánticos.
+ * La Fase 5 añadirá themes/high-contrast.css siguiendo el mismo patrón,
+ * intercambiado vía [data-theme='high-contrast'] en <html>.
+ */
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg-primary: var(--color-obsidian);
+  --color-bg-secondary: var(--color-charcoal);
+  --color-bg-elevated: color-mix(in srgb, var(--color-charcoal) 92%, white 8%);
+
+  --color-text-primary: var(--color-warm-ivory);
+  --color-text-secondary: color-mix(in srgb, var(--color-warm-ivory) 64%, transparent);
+  --color-text-tertiary: color-mix(in srgb, var(--color-warm-ivory) 40%, transparent);
+
+  --color-border: color-mix(in srgb, var(--color-warm-ivory) 8%, transparent);
+  --color-border-hover: color-mix(in srgb, var(--color-warm-ivory) 16%, transparent);
+
+  --color-accent-primary: var(--color-neo-mint);
+  --color-accent-secondary: var(--color-soft-amber);
+  --color-accent-tertiary: var(--color-electric-coral);
+  --color-accent-technical: var(--color-ice-cyan);
+
+  --color-focus-ring: var(--color-neo-mint);
+}

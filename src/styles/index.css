@@ -1,0 +1,16 @@
+/**
+ * Punto de entrada único de estilos. Importar UNA vez en main.jsx:
+ *   import '@/styles/index.css';
+ *
+ * Orden intencional:
+ *   1. tokens    → variables crudas (colores, tipografía, spacing...)
+ *   2. themes    → mapea tokens crudos a roles semánticos (bg, text...)
+ *   3. base      → reset + estilos globales, ya puede usar los roles
+ *   4. utilities → clases de ayuda, van al final para poder sobreescribir
+ */
+
+@import './tokens/index.css';
+@import './themes/dark.css';
+@import './themes/high-contrast.css';
+@import './base/index.css';
+@import './utilities/index.css';

@@ -1,0 +1,24 @@
+/**
+ * SPACING
+ * Escala amplia a propósito: la filosofía pide muchísimo espacio negativo,
+ * así que el salto entre steps es más generoso que un 4pt-grid típico.
+ */
+
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+  --space-12: 16rem;
+
+  /* Ritmo vertical entre secciones y padding lateral del contenedor */
+  --section-padding-y: clamp(4rem, 4rem + 8vw, 10rem);
+  --container-padding-x: clamp(1.5rem, 1rem + 3vw, 4rem);
+}

@@ -1,0 +1,15 @@
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  display: grid;
+  place-items: center;
+  background: var(--color-obsidian);
+}
+
+.mark {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}

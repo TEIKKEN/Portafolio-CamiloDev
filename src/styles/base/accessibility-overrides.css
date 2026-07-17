@@ -1,0 +1,17 @@
+/**
+ * Aplica en vivo los ajustes del panel (fontScale, letterSpacing,
+ * wordSpacing). AccessibilityContext setea estas custom properties
+ * directamente en <html>.
+ *
+ * Importante: font-scale se aplica en el <html>, no en <body>, porque
+ * los tokens de tipografía están en rem — y rem se calcula sobre el
+ * font-size del elemento raíz, no del body.
+ */
+html {
+  font-size: calc(100% * var(--a11y-font-scale, 1));
+}
+
+body {
+  letter-spacing: calc(var(--tracking-normal) + var(--a11y-letter-spacing, 0em));
+  word-spacing: var(--a11y-word-spacing, 0em);
+}

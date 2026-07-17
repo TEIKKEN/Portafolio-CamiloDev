@@ -1,0 +1,14 @@
+/**
+ * Red de seguridad para el toggle MANUAL de "reducir movimiento".
+ * tokens/motion.css ya cubre prefers-reduced-motion del SO; esta clase
+ * cubre el caso en que el usuario lo activa desde el panel aunque su
+ * SO no lo pida.
+ */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

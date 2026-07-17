@@ -1,0 +1,118 @@
+.header {
+  max-width: 640px;
+  margin: 0 auto var(--space-9);
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-accent-primary);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.heading {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+}
+
+.subheading {
+  margin-top: var(--space-4);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.formWrapper {
+  position: relative;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.errorBanner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-electric-coral) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-electric-coral) 35%, transparent);
+  color: var(--color-electric-coral);
+  font-size: var(--text-sm);
+  overflow: hidden;
+}
+
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.statusPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-9) var(--space-8);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.statusIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-2);
+  background: color-mix(in srgb, var(--color-neo-mint) 15%, transparent);
+  color: var(--color-neo-mint);
+}
+
+.statusTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.statusText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  max-width: 40ch;
+}
+
+@media (max-width: 599px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .form {
+    padding: var(--space-6);
+  }
+}
