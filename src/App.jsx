@@ -3,7 +3,7 @@ import MainLayout from '@/components/layout/MainLayout/MainLayout';
 import Hero from '@/features/hero/Hero';
 import Seo from '@/components/common/Seo/Seo';
 
-const About = lazy(() => import('@/features/about/About'));
+const About = lazy(() => import('@/features/About/About'));
 const Projects = lazy(() => import('@/features/projects/Projects'));
 const Timeline = lazy(() => import('@/features/timeline/Timeline'));
 const Skills = lazy(() => import('@/features/skills/Skills'));
@@ -12,7 +12,7 @@ const Contact = lazy(() => import('@/features/contact/Contact'));
 function usePrefetchBelowFold() {
   useEffect(() => {
     const prefetch = () => {
-      import('@/features/about/About');
+      import('@/features/About/About');
       import('@/features/projects/Projects');
       import('@/features/timeline/Timeline');
       import('@/features/skills/Skills');
