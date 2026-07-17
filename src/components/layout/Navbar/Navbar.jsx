@@ -25,9 +25,28 @@ const Navbar = () => {
   const { t, language, toggleLanguage } = useTranslation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let frameId = null;
+    let lastScrolled = false;
+
+    const onScroll = () => {
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        const nextScrolled = window.scrollY > 24;
+        if (lastScrolled !== nextScrolled) {
+          lastScrolled = nextScrolled;
+          setScrolled(nextScrolled);
+        }
+      });
+    };
+
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      if (frameId !== null) window.cancelAnimationFrame(frameId);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   useEffect(() => {
