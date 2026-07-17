@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '@/data/projects';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
@@ -6,7 +7,7 @@ import ProjectCard from './ProjectCard';
 import styles from './Projects.module.css';
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
-const item = (reducedMotion) => ({
+const createItemVariants = (reducedMotion) => ({
   hidden: { opacity: 0, y: reducedMotion ? 0 : 24 },
   visible: {
     opacity: 1,
@@ -18,6 +19,16 @@ const item = (reducedMotion) => ({
 const Projects = () => {
   const { reducedMotion } = useAccessibility();
   const { t } = useTranslation();
+  const itemVariants = useMemo(() => createItemVariants(reducedMotion), [reducedMotion]);
+  const renderedProjects = useMemo(
+    () =>
+      PROJECTS.map((project, index) => (
+        <motion.div key={project.id} variants={itemVariants}>
+          <ProjectCard project={project} index={index} />
+        </motion.div>
+      )),
+    [itemVariants]
+  );
 
   return (
     <section className={`${styles.projects} section`} id="projects" aria-label={t.projects.eyebrow}>
@@ -38,11 +49,7 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {PROJECTS.map((project, index) => (
-            <motion.div key={project.id} variants={item(reducedMotion)}>
-              <ProjectCard project={project} index={index} />
-            </motion.div>
-          ))}
+          {renderedProjects}
         </motion.div>
       </div>
     </section>
