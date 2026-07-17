@@ -70,6 +70,7 @@ const EcosystemObject = ({ mouseRef, scrollRef, reducedMotion, moduleCount = 26 
   const groupRef = useRef();
   const modules = useMemo(() => generateModules(moduleCount), [moduleCount]);
   const blockRefs = useRef([]);
+  const materialStateRef = useRef([]);
   const { activeMode } = useEcosystemActivity();
 
   const calmRef = useRef(0);
@@ -130,8 +131,16 @@ const EcosystemObject = ({ mouseRef, scrollRef, reducedMotion, moduleCount = 26 
         if (!mod.isActive) targetEmissiveHex = '#A9F7FF';
       }
 
-      material.emissiveIntensity = THREE.MathUtils.lerp(material.emissiveIntensity ?? 0, targetIntensity, 0.08);
-      material.emissive.set(targetEmissiveHex);
+      const nextIntensity = THREE.MathUtils.lerp(material.emissiveIntensity ?? 0, targetIntensity, 0.08);
+      if (Math.abs((material.emissiveIntensity ?? 0) - nextIntensity) > 1e-6) {
+        material.emissiveIntensity = nextIntensity;
+      }
+
+      const state = materialStateRef.current[i] ?? (materialStateRef.current[i] = { emissiveHex: '' });
+      if (state.emissiveHex !== targetEmissiveHex) {
+        material.emissive.set(targetEmissiveHex);
+        state.emissiveHex = targetEmissiveHex;
+      }
     });
   });
 
