@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { TIMELINE } from '@/data/timeline';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
@@ -13,6 +13,7 @@ const Timeline = () => {
 
   const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start 0.75', 'end 0.35'] });
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const memoizedTimeline = useMemo(() => TIMELINE, []);
 
   return (
     <section className={`${styles.timeline} section`} id="timeline" aria-label={t.timeline.eyebrow}>
@@ -34,7 +35,7 @@ const Timeline = () => {
           </div>
 
           <ol className={styles.list}>
-            {TIMELINE.map((entry, i) => (
+            {memoizedTimeline.map((entry, i) => (
               <TimelineItem key={entry.id} entry={entry} index={i} />
             ))}
           </ol>
