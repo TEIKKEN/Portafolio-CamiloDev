@@ -39,7 +39,7 @@ const Hero = () => {
   };
 
   const scrollToNext = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+    document.getElementById('about')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
   };
 
   return (

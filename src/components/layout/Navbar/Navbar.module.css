@@ -14,10 +14,21 @@
 
 .scrolled {
   padding-block: var(--space-3);
-  background: color-mix(in srgb, var(--color-obsidian) 80%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--color-obsidian) 92%, transparent);
   border-bottom-color: var(--color-border);
+}
+
+/* backdrop-filter es costoso de recomponer en cada frame de scroll en
+   GPUs de gama baja (navbar es position: fixed, así que el navegador
+   re-samplea el blur constantemente mientras algo se mueve detrás).
+   Se limita a tablet/desktop; en mobile el fondo casi opaco de arriba
+   cubre visualmente sin ese costo. */
+@media (min-width: 768px) {
+  .scrolled {
+    background: color-mix(in srgb, var(--color-obsidian) 80%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 }
 
 .inner {

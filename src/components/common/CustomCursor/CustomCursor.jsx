@@ -11,7 +11,11 @@ const CustomCursor = () => {
   const { reducedMotion } = useAccessibility();
 
   useEffect(() => {
-    setEnabled(window.matchMedia('(pointer: fine)').matches);
+    const query = window.matchMedia('(pointer: fine) and (hover: hover)');
+    setEnabled(query.matches);
+    const handler = (e) => setEnabled(e.matches);
+    query.addEventListener('change', handler);
+    return () => query.removeEventListener('change', handler);
   }, []);
 
   useEffect(() => {
