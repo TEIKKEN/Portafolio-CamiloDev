@@ -1,5 +1,5 @@
-import { useMemo, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { TIMELINE } from '@/data/timeline';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -10,10 +10,6 @@ const Timeline = () => {
   const trackRef = useRef(null);
   const { reducedMotion } = useAccessibility();
   const { t } = useTranslation();
-
-  const { scrollYProgress } = useScroll({ target: trackRef, offset: ['start 0.75', 'end 0.35'] });
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const memoizedTimeline = useMemo(() => TIMELINE, []);
 
   return (
     <section className={`${styles.timeline} section`} id="timeline" aria-label={t.timeline.eyebrow}>
@@ -30,12 +26,15 @@ const Timeline = () => {
           <div className={styles.trackLine} aria-hidden="true">
             <motion.div
               className={styles.trackLineFill}
-              style={{ scaleY: reducedMotion ? 1 : lineScale }}
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={reducedMotion ? { duration: 0 } : { duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             />
           </div>
 
           <ol className={styles.list}>
-            {memoizedTimeline.map((entry, i) => (
+            {TIMELINE.map((entry, i) => (
               <TimelineItem key={entry.id} entry={entry} index={i} />
             ))}
           </ol>
