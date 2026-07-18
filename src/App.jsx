@@ -1,7 +1,8 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useRef } from 'react';
 import MainLayout from '@/components/layout/MainLayout/MainLayout';
 import Hero from '@/features/hero/Hero';
 import Seo from '@/components/common/Seo/Seo';
+import { useSequentialPrefetch } from '@/hooks/useSequentialPrefetch';
 
 const About = lazy(() => import('@/features/About/About'));
 const Projects = lazy(() => import('@/features/projects/Projects'));
@@ -9,32 +10,25 @@ const Timeline = lazy(() => import('@/features/timeline/Timeline'));
 const Skills = lazy(() => import('@/features/skills/Skills'));
 const Contact = lazy(() => import('@/features/contact/Contact'));
 
-function usePrefetchBelowFold() {
-  useEffect(() => {
-    const prefetch = () => {
-      import('@/features/About/About');
-      import('@/features/projects/Projects');
-      import('@/features/timeline/Timeline');
-      import('@/features/skills/Skills');
-      import('@/features/contact/Contact');
-    };
-
-    if ('requestIdleCallback' in window) {
-      const id = window.requestIdleCallback(prefetch, { timeout: 2000 });
-      return () => window.cancelIdleCallback(id);
-    }
-    const timer = setTimeout(prefetch, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-}
+// Fuera del componente: referencia estable, no se recrea en cada render
+// (mismo motivo por el que sacamos NAV_IDS del Navbar en la Fase 12).
+const IMPORTERS = [
+  () => import('@/features/About/About'),
+  () => import('@/features/projects/Projects'),
+  () => import('@/features/timeline/Timeline'),
+  () => import('@/features/skills/Skills'),
+  () => import('@/features/contact/Contact'),
+];
 
 function App() {
-  usePrefetchBelowFold();
+  const sentinelRef = useRef(null);
+  useSequentialPrefetch(sentinelRef, IMPORTERS);
 
   return (
     <MainLayout>
       <Seo />
       <Hero />
+      <div ref={sentinelRef} aria-hidden="true" style={{ height: 1 }} />
       <Suspense fallback={null}>
         <About />
       </Suspense>
