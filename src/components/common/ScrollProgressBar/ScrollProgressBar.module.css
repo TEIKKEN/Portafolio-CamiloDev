@@ -9,19 +9,3 @@
   transform: scaleX(0);
   z-index: 200;
 }
-
-@supports (animation-timeline: scroll()) {
-  .bar {
-    animation: scroll-progress linear both;
-    animation-timeline: scroll(root);
-  }
-}
-
-@keyframes scroll-progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}

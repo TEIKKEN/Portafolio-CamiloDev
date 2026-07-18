@@ -42,24 +42,6 @@
   transform: scaleY(1);
 }
 
-@supports (animation-timeline: view()) {
-  html:not(.reduce-motion) .trackLineFill {
-    transform: scaleY(0);
-    animation: track-fill linear both;
-    animation-timeline: view();
-    animation-range: cover;
-  }
-}
-
-@keyframes track-fill {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-
 .list {
   display: flex;
   flex-direction: column;

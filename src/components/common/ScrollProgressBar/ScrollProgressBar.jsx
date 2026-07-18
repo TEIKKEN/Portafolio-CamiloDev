@@ -1,23 +1,22 @@
 import { useEffect, useRef } from 'react';
 import styles from './ScrollProgressBar.module.css';
 
-const supportsScrollTimeline =
-  typeof CSS !== 'undefined' && CSS.supports?.('animation-timeline: scroll()');
-
 /**
- * En navegadores con soporte, el fill lo maneja el CSS de
- * ScrollProgressBar.module.css vía `animation-timeline: scroll(root)`
- * (corre en el compositor, cero costo de hilo principal). Este efecto
- * es solo el fallback para navegadores sin soporte: mismo patrón de
- * throttle-a-rAF que useScrollProgress.js, mutando el DOM directo en
- * vez de pasar por React/Framer Motion en cada frame de scroll.
+ * rAF-throttled, mutando el DOM directo (sin React state, sin Framer
+ * Motion) en vez de re-renderizar por cada frame de scroll.
+ *
+ * Nota: se descartó `animation-timeline: scroll(root)` — en desktop
+ * (donde el navegador soporta scroll-driven animations) introducía un
+ * retraso perceptible en la respuesta al scroll nativo, porque el
+ * navegador necesita mantener el frame de la animación perfectamente
+ * sincronizado con la posición de scroll, lo que puede forzar un modo
+ * de manejo de scroll menos asíncrono. Este approach imperativo es más
+ * simple y no tiene ese efecto secundario.
  */
 const ScrollProgressBar = () => {
   const barRef = useRef(null);
 
   useEffect(() => {
-    if (supportsScrollTimeline) return;
-
     let ticking = false;
 
     const update = () => {

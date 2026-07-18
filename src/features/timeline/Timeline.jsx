@@ -5,22 +5,26 @@ import { useTranslation } from '@/hooks/useTranslation';
 import TimelineItem from './TimelineItem';
 import styles from './Timeline.module.css';
 
-const supportsViewTimeline =
-  typeof CSS !== 'undefined' && CSS.supports?.('animation-timeline: view()');
-
 const Timeline = () => {
   const trackRef = useRef(null);
   const fillRef = useRef(null);
   const { reducedMotion } = useAccessibility();
   const { t } = useTranslation();
 
-  // En navegadores con soporte, el llenado en tiempo real lo maneja el
-  // CSS de Timeline.module.css vía `animation-timeline: view()` (corre
-  // en el compositor). Este efecto es solo el fallback: mismo patrón
-  // de throttle-a-rAF que useScrollProgress.js, escribiendo el estilo
-  // directo al DOM en vez de re-renderizar React por cada scroll.
+  // rAF-throttled, escribiendo el estilo directo al DOM (sin React
+  // state, sin Framer Motion) en vez de re-renderizar por cada frame
+  // de scroll.
+  //
+  // Nota: se descartó `animation-timeline: view()` por dos motivos —
+  // (1) `.trackLine` tiene overflow:hidden, y cualquier ancestro con
+  // overflow no-visible se vuelve el scroller de referencia del view
+  // timeline si no se especifica uno explícito, así que el progreso se
+  // calculaba contra `.trackLine` (que nunca scrollea) en vez de la
+  // página real, dejando la animación congelada; (2) igual que en
+  // ScrollProgressBar, en desktop introducía un retraso perceptible en
+  // la respuesta al scroll nativo.
   useEffect(() => {
-    if (supportsViewTimeline || reducedMotion) return;
+    if (reducedMotion) return;
 
     let ticking = false;
 
