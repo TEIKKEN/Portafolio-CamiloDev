@@ -23,7 +23,12 @@ const EcosystemCanvas = ({ scrollRef, paused = false }) => {
       dpr={config.dpr}
       frameloop={paused ? 'never' : 'always'}
       gl={{
-        antialias: true,
+        // Cuando hay postprocesado (bloom en tablet/desktop), el
+        // EffectComposer ya hace su propio multisampling — dejar el
+        // antialias nativo del contexto prendido duplica el costo de
+        // AA en cada frame, compitiendo con el scroll justo en los
+        // tiers más pesados (26 módulos, dpr hasta 1.75).
+        antialias: !config.bloom,
         alpha: true,
         toneMapping: THREE.ACESFilmicToneMapping,
         toneMappingExposure: 1.1,
