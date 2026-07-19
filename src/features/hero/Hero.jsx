@@ -1,4 +1,4 @@
-import { useRef, useEffect, lazy, Suspense } from 'react';
+import { useRef, useEffect, useState, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Button from '@/components/ui/Button/Button';
@@ -19,6 +19,7 @@ const Hero = () => {
   const { reducedMotion } = useAccessibility();
   const { ready } = usePageReady();
   const { t } = useTranslation();
+  const [heroVisible, setHeroVisible] = useState(true);
 
   // Precarga el chunk de Three.js EN PARALELO con la cortina de
   // entrada (para no perder tiempo de red), pero sin montarlo/
@@ -27,6 +28,23 @@ const Hero = () => {
   // la animación de la cortina.
   useEffect(() => {
     import('@/three/scene/EcosystemCanvas');
+  }, []);
+
+  // El Canvas de Three.js no se pausa solo al salir de pantalla (R3F
+  // sigue llamando useFrame en loop infinito por defecto). En mobile
+  // eso competía por GPU/hilo principal justo cuando el navegador
+  // tenía que pintar la sección de destino de un scroll (ej. al tocar
+  // "Ver proyectos"), lo que dejaba una pantalla negra hasta que un
+  // scroll manual forzaba un repaint. Frenamos el render loop en
+  // cuanto el Hero deja de estar en viewport.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => setHeroVisible(entry.isIntersecting), {
+      rootMargin: '200px 0px',
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const textVariants = {
@@ -53,7 +71,7 @@ const Hero = () => {
         <ErrorBoundary fallback={<EcosystemFallback />}>
           {ready ? (
             <Suspense fallback={<EcosystemFallback />}>
-              <EcosystemCanvas scrollRef={scrollProgress} />
+              <EcosystemCanvas scrollRef={scrollProgress} paused={!heroVisible} />
             </Suspense>
           ) : (
             <EcosystemFallback />

@@ -11,7 +11,7 @@ import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useViewportTier } from '@/hooks/useViewportTier';
 import { TIER_CONFIG, CAMERA_BY_TIER } from '@/three/config/tierConfig';
 
-const EcosystemCanvas = ({ scrollRef }) => {
+const EcosystemCanvas = ({ scrollRef, paused = false }) => {
   const mouseRef = useMouseParallax();
   const { reducedMotion } = useAccessibility();
   const tier = useViewportTier();
@@ -21,6 +21,7 @@ const EcosystemCanvas = ({ scrollRef }) => {
   return (
     <Canvas
       dpr={config.dpr}
+      frameloop={paused ? 'never' : 'always'}
       gl={{
         antialias: true,
         alpha: true,
