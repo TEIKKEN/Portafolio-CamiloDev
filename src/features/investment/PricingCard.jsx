@@ -2,6 +2,7 @@ import { memo } from 'react';
 import Card from '@/components/ui/Card/Card';
 import Button from '@/components/ui/Button/Button';
 import { getAccentVar } from '@/utils/accent';
+import { requestQuote } from '@/utils/quoteRequest';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import styles from './PricingCard.module.css';
@@ -12,7 +13,8 @@ const PricingCard = ({ plan }) => {
   const { id, priceFrom, accent, featured } = plan;
   const copy = t.investment.plans[id];
 
-  const scrollToContact = () => {
+  const requestThisPlan = () => {
+    requestQuote(copy.title);
     document
       .getElementById('contact')
       ?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
@@ -62,8 +64,10 @@ const PricingCard = ({ plan }) => {
 
       <Button
         variant="secondary"
-        size="sm"
-        onClick={scrollToContact}
+        size="md"
+        className={styles.requestButton}
+        style={{ '--btn-accent': 'var(--card-accent)' }}
+        onClick={requestThisPlan}
         aria-label={`${t.investment.requestPlan} — ${copy.title}`}
       >
         {t.investment.requestPlan}

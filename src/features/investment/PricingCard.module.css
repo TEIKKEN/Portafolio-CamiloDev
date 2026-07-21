@@ -123,3 +123,8 @@
   border-radius: 50%;
   background: var(--card-accent);
 }
+
+.requestButton {
+  margin-top: auto;
+  width: 100%;
+}

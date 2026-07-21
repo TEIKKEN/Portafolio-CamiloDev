@@ -55,12 +55,12 @@
 
 .secondary {
   background: transparent;
-  border-color: var(--color-border-hover);
-  color: var(--color-text-primary);
+  border-color: var(--btn-accent, var(--color-border-hover));
+  color: var(--btn-accent, var(--color-text-primary));
 }
 .secondary:hover {
-  border-color: var(--color-accent-primary);
-  color: var(--color-accent-primary);
+  border-color: var(--btn-accent, var(--color-accent-primary));
+  color: var(--btn-accent, var(--color-accent-primary));
 }
 
 .ghost {
