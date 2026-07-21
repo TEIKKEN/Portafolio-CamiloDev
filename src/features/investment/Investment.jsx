@@ -131,11 +131,6 @@ const Investment = () => {
                         transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
                       }
                 }
-                whileTap={
-                  reducedMotion
-                    ? undefined
-                    : { scale: 0.98, transition: { duration: 0.15 } }
-                }
               >
                 <PricingCard plan={plan} />
               </motion.div>
@@ -168,6 +163,7 @@ const Investment = () => {
             size="lg"
             magnetic
             onClick={scrollToContact}
+            aria-label={inv.cta.ariaLabel}
           >
             {inv.cta.button}
             <Icon icon={ArrowUpRight} size={18} />

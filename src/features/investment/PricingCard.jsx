@@ -1,13 +1,22 @@
 import { memo } from 'react';
 import Card from '@/components/ui/Card/Card';
+import Button from '@/components/ui/Button/Button';
 import { getAccentVar } from '@/utils/accent';
+import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import styles from './PricingCard.module.css';
 
 const PricingCard = ({ plan }) => {
+  const { reducedMotion } = useAccessibility();
   const { t } = useTranslation();
   const { id, priceFrom, accent, featured } = plan;
   const copy = t.investment.plans[id];
+
+  const scrollToContact = () => {
+    document
+      .getElementById('contact')
+      ?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+  };
 
   return (
     <Card
@@ -21,7 +30,7 @@ const PricingCard = ({ plan }) => {
         </span>
       )}
 
-      <h3 className={styles.title}>{copy.title}</h3>
+      <h4 className={styles.title}>{copy.title}</h4>
 
       <p className={styles.price}>
         <span className={styles.priceLabel}>{t.investment.priceFromLabel}</span>
@@ -50,6 +59,15 @@ const PricingCard = ({ plan }) => {
           ))}
         </ul>
       </div>
+
+      <Button
+        variant="secondary"
+        size="sm"
+        onClick={scrollToContact}
+        aria-label={`${t.investment.requestPlan} — ${copy.title}`}
+      >
+        {t.investment.requestPlan}
+      </Button>
     </Card>
   );
 };

@@ -162,6 +162,7 @@ export const translations = {
       idealForLabel: 'Ideal para',
       includesLabel: 'Incluye',
       featuredLabel: 'Servicio premium',
+      requestPlan: 'Solicitar este plan',
       plans: {
         landing: {
           title: 'Landing Page',
@@ -265,6 +266,7 @@ export const translations = {
         heading: '¿Tienes una idea? Conversemos sobre tu proyecto.',
         text: 'Juntos podemos construir una experiencia digital rápida, accesible y diseñada para destacar.',
         button: 'Solicitar una cotización',
+        ariaLabel: 'Solicitar una cotización — ir al formulario de contacto',
       },
     },
     contact: {
@@ -473,6 +475,7 @@ export const translations = {
       priceFromLabel: 'Starting at',
       idealForLabel: 'Ideal for',
       includesLabel: 'Includes',
+      requestPlan: 'Request this plan',
       featuredLabel: 'Premium service',
       plans: {
         landing: {
@@ -577,6 +580,7 @@ export const translations = {
         heading: "Have an idea? Let's talk about your project.",
         text: 'Together we can build a fast, accessible digital experience designed to stand out.',
         button: 'Request a quote',
+        ariaLabel: 'Request a quote — go to the contact form',
       },
     },
     contact: {
