@@ -1,7 +1,14 @@
 export const translations = {
   es: {
     nav: {
-      links: { hero: 'Inicio', about: 'Sobre mí', projects: 'Proyectos', timeline: 'Trayectoria', contact: 'Contacto' },
+      links: {
+        hero: 'Inicio',
+        about: 'Sobre mí',
+        projects: 'Proyectos',
+        timeline: 'Trayectoria',
+        investment: 'Precios',
+        contact: 'Contacto',
+      },
       availableForWork: 'Disponible para trabajar',
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
@@ -10,7 +17,8 @@ export const translations = {
     hero: {
       titleLine1: 'Creative',
       titleLine2: 'Developer',
-      subtitle: 'Diseñando software accesible, de alto rendimiento y con una arquitectura pensada para crecer.',
+      subtitle:
+        'Diseñando software accesible, de alto rendimiento y con una arquitectura pensada para crecer.',
       viewProjects: 'Ver proyectos',
       contact: 'Contacto',
       scrollCue: 'Bajar a la siguiente sección',
@@ -28,7 +36,8 @@ export const translations = {
         location: { label: 'Ubicación', value: 'Colombia' },
       },
       aiTitle: 'AI-Assisted Development',
-      aiText: 'La Inteligencia Artificial forma parte del flujo de desarrollo del proyecto como herramienta de apoyo para planificación, documentación, revisión de código, depuración y optimización. Todas las decisiones de arquitectura, implementación y calidad son evaluadas y validadas por el desarrollador.',
+      aiText:
+        'La Inteligencia Artificial forma parte del flujo de desarrollo del proyecto como herramienta de apoyo para planificación, documentación, revisión de código, depuración y optimización. Todas las decisiones de arquitectura, implementación y calidad son evaluadas y validadas por el desarrollador.',
     },
     projects: {
       eyebrow: 'Selected Work',
@@ -67,7 +76,11 @@ export const translations = {
       eyebrow: 'Journey',
       headingPre: 'Cómo llegué ',
       headingAccent: 'hasta aquí',
-      typeLabel: { experience: 'Experiencia', education: 'Educación', certification: 'Certificación' },
+      typeLabel: {
+        experience: 'Experiencia',
+        education: 'Educación',
+        certification: 'Certificación',
+      },
       items: {
         'edu-sena': {
           role: 'Técnico en Programación de Software',
@@ -97,15 +110,21 @@ export const translations = {
         'Las tecnologías que utilizo para construir experiencias accesibles, escalables y orientadas al rendimiento.',
       categories: {
         frontend: {
-          description: 'Tecnologías con las que construyo interfaces modernas, mantenibles y escalables.',
+          description:
+            'Tecnologías con las que construyo interfaces modernas, mantenibles y escalables.',
         },
-        '3d-motion': { description: 'Herramientas para dar profundidad, movimiento y vida a la interfaz.' },
+        '3d-motion': {
+          description:
+            'Herramientas para dar profundidad, movimiento y vida a la interfaz.',
+        },
         accessibility: {
-          description: 'Principios y técnicas para que cada experiencia sea usable por cualquier persona.',
+          description:
+            'Principios y técnicas para que cada experiencia sea usable por cualquier persona.',
           secondary: ['Navegación por teclado', 'Lectores de pantalla'],
         },
         workflow: {
-          description: 'Flujo de trabajo, control de versiones y herramientas de diseño.',
+          description:
+            'Flujo de trabajo, control de versiones y herramientas de diseño.',
           groups: {
             desarrollo: 'Desarrollo',
             calidad: 'Calidad',
@@ -119,16 +138,149 @@ export const translations = {
         },
       },
     },
+    investment: {
+      eyebrow: 'Investment',
+      headingPre: 'Cómo pienso la ',
+      headingAccent: 'inversión',
+      intro:
+        'Un sitio web no es un gasto. Es la primera impresión de tu negocio. Cada proyecto se desarrolla desde cero con un enfoque en rendimiento, accesibilidad, escalabilidad y una experiencia de usuario excepcional. No utilizo plantillas ni constructores visuales.',
+      discoveryTitle: 'Descubrimiento',
+      discoveryIntro:
+        'Cada proyecto comienza con una etapa de descubrimiento. Antes de escribir una sola línea de código, me encargo personalmente de analizar:',
+      discoveryList: [
+        'Objetivos del negocio',
+        'Público objetivo',
+        'Requerimientos funcionales',
+        'Experiencia deseada',
+        'Alcance del proyecto',
+        'Oportunidades de optimización y accesibilidad',
+      ],
+      closing:
+        'Este proceso permite construir una solución adaptada a tus necesidades y evita desarrollar funcionalidades innecesarias.',
+      plansTitle: 'Planes',
+      priceFromLabel: 'Desde',
+      idealForLabel: 'Ideal para',
+      includesLabel: 'Incluye',
+      featuredLabel: 'Servicio premium',
+      plans: {
+        landing: {
+          title: 'Landing Page',
+          idealFor: [
+            'Marcas personales',
+            'Emprendimientos',
+            'Restaurantes',
+            'Consultorios',
+            'Eventos',
+            'Lanzamientos',
+          ],
+          includes: [
+            'Diseño totalmente personalizado',
+            'Responsive design',
+            'Optimización de velocidad',
+            'Accesibilidad',
+            'SEO básico',
+            'Formulario de contacto',
+            'Animaciones modernas',
+            'Despliegue',
+          ],
+        },
+        business: {
+          title: 'Sitio Web Empresarial',
+          includes: [
+            'Todo lo anterior',
+            'Varias páginas',
+            'Componentes interactivos',
+            'Arquitectura escalable',
+            'Optimización avanzada',
+            'Diseño consistente',
+            'Integraciones básicas',
+          ],
+        },
+        web3d: {
+          title: 'Experiencia Web 3D',
+          includes: [
+            'Objetos 3D personalizados',
+            'Three.js',
+            'Animaciones avanzadas',
+            'Motion design',
+            'Microinteracciones',
+            'Optimización para dispositivos',
+            'Experiencia completamente personalizada',
+          ],
+        },
+        frontend: {
+          title: 'Frontend para Aplicaciones',
+          includes: [
+            'React',
+            'Vite',
+            'Arquitectura de componentes',
+            'Integración con APIs',
+            'Interfaces escalables',
+            'Optimización',
+            'Accesibilidad',
+          ],
+        },
+      },
+      process: {
+        title: 'Proceso',
+        steps: [
+          {
+            title: 'Descubrimiento',
+            description: 'Analizamos objetivos, necesidades y requerimientos.',
+          },
+          {
+            title: 'Planificación',
+            description: 'Defino la arquitectura y la estrategia del proyecto.',
+          },
+          {
+            title: 'Diseño',
+            description:
+              'Construyo una interfaz enfocada en claridad, rendimiento y experiencia.',
+          },
+          {
+            title: 'Desarrollo',
+            description:
+              'Implementación con tecnologías modernas y código mantenible.',
+          },
+          {
+            title: 'Lanzamiento',
+            description: 'Pruebas, optimización y despliegue.',
+          },
+        ],
+      },
+      everyProject: {
+        title: 'Qué incluye cualquier proyecto',
+        items: [
+          'Código limpio y mantenible',
+          'Diseño responsive',
+          'Optimización de rendimiento',
+          'Accesibilidad',
+          'Buenas prácticas de desarrollo',
+          'Soporte durante la entrega',
+          'Comunicación directa durante todo el proceso',
+        ],
+      },
+      note: 'Los valores publicados corresponden al punto de partida de cada tipo de proyecto. El costo final depende del alcance, funcionalidades, integraciones y complejidad del desarrollo. Cada propuesta se realiza de forma personalizada.',
+      cta: {
+        heading: '¿Tienes una idea? Conversemos sobre tu proyecto.',
+        text: 'Juntos podemos construir una experiencia digital rápida, accesible y diseñada para destacar.',
+        button: 'Solicitar una cotización',
+      },
+    },
     contact: {
       eyebrow: 'Get in touch',
       headingPre: 'Hablemos de tu ',
       headingAccent: 'próximo proyecto',
-      subheading: 'Cuéntame qué estás construyendo — respondo todos los mensajes personalmente.',
+      subheading:
+        'Cuéntame qué estás construyendo — respondo todos los mensajes personalmente.',
       fields: {
         name: { label: 'Nombre', placeholder: 'Tu nombre' },
         email: { label: 'Correo', placeholder: 'tu@correo.com' },
         subject: { label: 'Asunto', placeholder: '¿De qué se trata?' },
-        message: { label: 'Mensaje', placeholder: 'Cuéntame los detalles de tu proyecto...' },
+        message: {
+          label: 'Mensaje',
+          placeholder: 'Cuéntame los detalles de tu proyecto...',
+        },
       },
       validation: {
         nameMin: 'Tu nombre debe tener al menos 2 caracteres',
@@ -143,11 +295,15 @@ export const translations = {
       submit: 'Enviar mensaje',
       submitting: 'Enviando...',
       successTitle: 'Mensaje enviado',
-      successText: 'Gracias por escribir — te responderé lo antes posible a tu correo.',
+      successText:
+        'Gracias por escribir — te responderé lo antes posible a tu correo.',
       sendAnother: 'Enviar otro mensaje',
-      genericError: 'No se pudo enviar el mensaje. Intenta de nuevo en unos minutos.',
-      networkError: 'Hubo un problema de conexión. Revisa tu internet e intenta de nuevo.',
-      rateLimited: (seconds) => `Demasiados intentos. Intenta de nuevo en ${seconds} segundos.`,
+      genericError:
+        'No se pudo enviar el mensaje. Intenta de nuevo en unos minutos.',
+      networkError:
+        'Hubo un problema de conexión. Revisa tu internet e intenta de nuevo.',
+      rateLimited: (seconds) =>
+        `Demasiados intentos. Intenta de nuevo en ${seconds} segundos.`,
     },
     footer: {
       tagline: 'Diseño y construyo sistemas digitales — no solo interfaces.',
@@ -159,7 +315,14 @@ export const translations = {
   },
   en: {
     nav: {
-      links: { hero: 'Home', about: 'About', projects: 'Projects', timeline: 'Timeline', contact: 'Contact' },
+      links: {
+        hero: 'Home',
+        about: 'About',
+        projects: 'Projects',
+        timeline: 'Timeline',
+        investment: 'Pricing',
+        contact: 'Contact',
+      },
       availableForWork: 'Available for work',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
@@ -168,7 +331,8 @@ export const translations = {
     hero: {
       titleLine1: 'Creative',
       titleLine2: 'Developer',
-      subtitle: 'Designing accessible, high-performance software with an architecture built to scale.',
+      subtitle:
+        'Designing accessible, high-performance software with an architecture built to scale.',
       viewProjects: 'View Projects',
       contact: 'Contact',
       scrollCue: 'Scroll to next section',
@@ -186,7 +350,8 @@ export const translations = {
         location: { label: 'Location', value: 'Colombia' },
       },
       aiTitle: 'AI-Assisted Development',
-      aiText: "Artificial intelligence is part of this project's development flow as a support tool for planning, documentation, code review, debugging, and optimization. Every architecture, implementation, and quality decision is evaluated and validated by the developer.",
+      aiText:
+        "Artificial intelligence is part of this project's development flow as a support tool for planning, documentation, code review, debugging, and optimization. Every architecture, implementation, and quality decision is evaluated and validated by the developer.",
     },
     projects: {
       eyebrow: 'Selected Work',
@@ -225,7 +390,11 @@ export const translations = {
       eyebrow: 'Journey',
       headingPre: 'How I got ',
       headingAccent: 'here',
-      typeLabel: { experience: 'Experience', education: 'Education', certification: 'Certification' },
+      typeLabel: {
+        experience: 'Experience',
+        education: 'Education',
+        certification: 'Certification',
+      },
       items: {
         'edu-sena': {
           role: 'Software Programming Technician',
@@ -251,17 +420,29 @@ export const translations = {
       eyebrow: 'Toolkit',
       headingPre: 'Technical ',
       headingAccent: 'Architecture',
-      subheading: 'The technologies I use to build accessible, scalable, and performance-oriented experiences.',
+      subheading:
+        'The technologies I use to build accessible, scalable, and performance-oriented experiences.',
       categories: {
-        frontend: { description: 'Technologies I use to build modern, maintainable, scalable interfaces.' },
-        '3d-motion': { description: 'Tools that give the interface depth, motion, and life.' },
+        frontend: {
+          description:
+            'Technologies I use to build modern, maintainable, scalable interfaces.',
+        },
+        '3d-motion': {
+          description: 'Tools that give the interface depth, motion, and life.',
+        },
         accessibility: {
-          description: 'Principles and techniques that make every experience usable by anyone.',
+          description:
+            'Principles and techniques that make every experience usable by anyone.',
           secondary: ['Keyboard navigation', 'Screen readers'],
         },
         workflow: {
           description: 'Workflow, version control, and design tooling.',
-          groups: { desarrollo: 'Development', calidad: 'Quality', diseño: 'Design', basicas: 'Core Skills' },
+          groups: {
+            desarrollo: 'Development',
+            calidad: 'Quality',
+            diseño: 'Design',
+            basicas: 'Core Skills',
+          },
         },
         'ai-workflow': {
           description:
@@ -269,16 +450,149 @@ export const translations = {
         },
       },
     },
+    investment: {
+      eyebrow: 'Investment',
+      headingPre: 'How I think about ',
+      headingAccent: 'investment',
+      intro:
+        "A website isn't an expense. It's the first impression of your business. Every project is built from scratch with a focus on performance, accessibility, scalability, and an exceptional user experience. I don't use templates or visual builders.",
+      discoveryTitle: 'Discovery',
+      discoveryIntro:
+        'Every project starts with a discovery phase. Before writing a single line of code, I personally analyze:',
+      discoveryList: [
+        'Business goals',
+        'Target audience',
+        'Functional requirements',
+        'Desired experience',
+        'Project scope',
+        'Optimization and accessibility opportunities',
+      ],
+      closing:
+        'This process makes it possible to build a solution tailored to your needs, and avoids building unnecessary features.',
+      plansTitle: 'Plans',
+      priceFromLabel: 'Starting at',
+      idealForLabel: 'Ideal for',
+      includesLabel: 'Includes',
+      featuredLabel: 'Premium service',
+      plans: {
+        landing: {
+          title: 'Landing Page',
+          idealFor: [
+            'Personal brands',
+            'Startups',
+            'Restaurants',
+            'Clinics & practices',
+            'Events',
+            'Launches',
+          ],
+          includes: [
+            'Fully custom design',
+            'Responsive design',
+            'Speed optimization',
+            'Accessibility',
+            'Basic SEO',
+            'Contact form',
+            'Modern animations',
+            'Deployment',
+          ],
+        },
+        business: {
+          title: 'Business Website',
+          includes: [
+            'Everything above',
+            'Multiple pages',
+            'Interactive components',
+            'Scalable architecture',
+            'Advanced optimization',
+            'Consistent design',
+            'Basic integrations',
+          ],
+        },
+        web3d: {
+          title: '3D Web Experience',
+          includes: [
+            'Custom 3D objects',
+            'Three.js',
+            'Advanced animations',
+            'Motion design',
+            'Microinteractions',
+            'Device optimization',
+            'Fully custom experience',
+          ],
+        },
+        frontend: {
+          title: 'Frontend for Applications',
+          includes: [
+            'React',
+            'Vite',
+            'Component architecture',
+            'API integration',
+            'Scalable interfaces',
+            'Optimization',
+            'Accessibility',
+          ],
+        },
+      },
+      process: {
+        title: 'Process',
+        steps: [
+          {
+            title: 'Discovery',
+            description: 'Analyzing goals, needs, and requirements.',
+          },
+          {
+            title: 'Planning',
+            description: "Defining the project's architecture and strategy.",
+          },
+          {
+            title: 'Design',
+            description:
+              'Building an interface focused on clarity, performance, and experience.',
+          },
+          {
+            title: 'Development',
+            description:
+              'Implementation with modern technologies and maintainable code.',
+          },
+          {
+            title: 'Launch',
+            description: 'Testing, optimization, and deployment.',
+          },
+        ],
+      },
+      everyProject: {
+        title: 'What every project includes',
+        items: [
+          'Clean, maintainable code',
+          'Responsive design',
+          'Performance optimization',
+          'Accessibility',
+          'Development best practices',
+          'Support during delivery',
+          'Direct communication throughout the process',
+        ],
+      },
+      note: 'Published prices are the starting point for each type of project. The final cost depends on scope, features, integrations, and development complexity. Every proposal is put together individually.',
+      cta: {
+        heading: "Have an idea? Let's talk about your project.",
+        text: 'Together we can build a fast, accessible digital experience designed to stand out.',
+        button: 'Request a quote',
+      },
+    },
     contact: {
       eyebrow: 'Get in touch',
       headingPre: "Let's talk about your ",
       headingAccent: 'next project',
-      subheading: "Tell me what you're building — I reply to every message personally.",
+      subheading:
+        "Tell me what you're building — I reply to every message personally.",
       fields: {
         name: { label: 'Name', placeholder: 'Your name' },
         email: { label: 'Email', placeholder: 'you@email.com' },
         subject: { label: 'Subject', placeholder: "What's this about?" },
-        message: { label: 'Message', placeholder: 'Tell me the details of your project...' },
+        message: {
+          label: 'Message',
+          placeholder: 'Tell me the details of your project...',
+        },
       },
       validation: {
         nameMin: 'Your name must be at least 2 characters',
@@ -293,11 +607,15 @@ export const translations = {
       submit: 'Send message',
       submitting: 'Sending...',
       successTitle: 'Message sent',
-      successText: "Thanks for writing — I'll get back to you at your email as soon as possible.",
+      successText:
+        "Thanks for writing — I'll get back to you at your email as soon as possible.",
       sendAnother: 'Send another message',
-      genericError: 'Could not send the message. Please try again in a few minutes.',
-      networkError: 'There was a connection problem. Check your internet and try again.',
-      rateLimited: (seconds) => `Too many attempts. Try again in ${seconds} seconds.`,
+      genericError:
+        'Could not send the message. Please try again in a few minutes.',
+      networkError:
+        'There was a connection problem. Check your internet and try again.',
+      rateLimited: (seconds) =>
+        `Too many attempts. Try again in ${seconds} seconds.`,
     },
     footer: {
       tagline: 'I design and build digital systems — not just interfaces.',

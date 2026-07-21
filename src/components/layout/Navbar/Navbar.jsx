@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: '#about', id: 'about' },
   { href: '#projects', id: 'projects' },
   { href: '#timeline', id: 'timeline' },
+  { href: '#investment', id: 'investment' },
   { href: '#contact', id: 'contact' },
 ];
 const NAV_IDS = NAV_LINKS.map((l) => l.id);
@@ -64,7 +65,9 @@ const Navbar = () => {
     setMobileOpen(false);
     document.body.style.overflow = '';
     requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+      document
+        .getElementById(id)
+        ?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
     });
   };
 
@@ -137,7 +140,11 @@ const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={reducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={
+              reducedMotion
+                ? { duration: 0 }
+                : { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+            }
           >
             <ul className={styles.mobileLinks}>
               {NAV_LINKS.map((link) => (
@@ -153,7 +160,11 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-            <button type="button" className={styles.mobileCta} onClick={() => navigateTo('contact')}>
+            <button
+              type="button"
+              className={styles.mobileCta}
+              onClick={() => navigateTo('contact')}
+            >
               {t.nav.availableForWork}
             </button>
           </motion.div>

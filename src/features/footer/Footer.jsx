@@ -15,6 +15,7 @@ const QUICK_LINKS = [
   { href: '#about', id: 'about' },
   { href: '#projects', id: 'projects' },
   { href: '#timeline', id: 'timeline' },
+  { href: '#investment', id: 'investment' },
   { href: '#contact', id: 'contact' },
 ];
 
@@ -31,7 +32,11 @@ const Footer = () => {
       initial={{ opacity: 0, y: reducedMotion ? 0 : 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={reducedMotion ? { duration: 0 } : { duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={
+        reducedMotion
+          ? { duration: 0 }
+          : { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+      }
     >
       <div className="container">
         <div className={styles.top}>
@@ -64,7 +69,12 @@ const Footer = () => {
               </li>
               {SOCIAL_LINKS.map((social) => (
                 <li key={social.label}>
-                  <a href={social.href} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.link}
+                  >
                     {social.label}
                     <Icon icon={ArrowUpRight} size={14} />
                   </a>

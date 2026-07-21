@@ -8,6 +8,7 @@ const About = lazy(() => import('@/features/About/About'));
 const Projects = lazy(() => import('@/features/projects/Projects'));
 const Timeline = lazy(() => import('@/features/timeline/Timeline'));
 const Skills = lazy(() => import('@/features/skills/Skills'));
+const Investment = lazy(() => import('@/features/investment/Investment'));
 const Contact = lazy(() => import('@/features/contact/Contact'));
 
 // Fuera del componente: referencia estable, no se recrea en cada render
@@ -17,6 +18,7 @@ const IMPORTERS = [
   () => import('@/features/projects/Projects'),
   () => import('@/features/timeline/Timeline'),
   () => import('@/features/skills/Skills'),
+  () => import('@/features/investment/Investment'),
   () => import('@/features/contact/Contact'),
 ];
 
@@ -40,6 +42,9 @@ function App() {
       </Suspense>
       <Suspense fallback={null}>
         <Skills />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Investment />
       </Suspense>
       <Suspense fallback={null}>
         <Contact />
