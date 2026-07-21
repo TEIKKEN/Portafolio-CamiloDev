@@ -4,12 +4,16 @@ import Button from '@/components/ui/Button/Button';
 import Icon from '@/components/ui/Icon/Icon';
 import FormField from '@/components/ui/FormField/FormField';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
+import { useSelectedPlan } from '@/app/context/SelectedPlanContext';
 import { useTranslation } from '@/hooks/useTranslation';
+import { PRICING_PLANS } from '@/data/pricing';
+import { getAccentVar } from '@/utils/accent';
 import { useContactForm } from './useContactForm';
 import styles from './Contact.module.css';
 
 const Contact = () => {
   const { reducedMotion } = useAccessibility();
+  const { selectedPlanId, setSelectedPlanId } = useSelectedPlan();
   const { t } = useTranslation();
   const { form, status, errorMessage, onSubmit, resetStatus } = useContactForm();
   const {
@@ -20,6 +24,9 @@ const Contact = () => {
 
   const isSubmitting = status === 'submitting';
   const transition = reducedMotion ? { duration: 0 } : { duration: 0.4, ease: [0.16, 1, 0.3, 1] };
+
+  const selectedPlan = PRICING_PLANS.find((plan) => plan.id === selectedPlanId) ?? null;
+  const selectedPlanCopy = selectedPlan ? t.investment.plans[selectedPlan.id] : null;
 
   return (
     <section className={`${styles.contact} section`} id="contact" aria-label={t.contact.eyebrow}>
@@ -83,6 +90,39 @@ const Contact = () => {
                     >
                       <Icon icon={AlertCircle} size={18} />
                       <span>{errorMessage}</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <AnimatePresence>
+                  {selectedPlan && selectedPlanCopy && (
+                    <motion.div
+                      className={styles.selectedPlan}
+                      style={{ '--selected-plan-accent': getAccentVar(selectedPlan.accent) }}
+                      initial={{ opacity: 0, y: reducedMotion ? 0 : -10, scale: reducedMotion ? 1 : 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: reducedMotion ? 0 : -10, scale: reducedMotion ? 1 : 0.98 }}
+                      transition={transition}
+                    >
+                      <span className={styles.selectedPlanDot} aria-hidden="true" />
+                      <div className={styles.selectedPlanInfo}>
+                        <span className={styles.selectedPlanLabel}>
+                          {t.contact.selectedPlan.label}
+                        </span>
+                        <p className={styles.selectedPlanName}>
+                          {selectedPlanCopy.title} — {t.investment.priceFromLabel} $
+                          {selectedPlan.priceFrom.toLocaleString('en-US')} USD
+                        </p>
+                        <p className={styles.selectedPlanHint}>{t.contact.selectedPlan.hint}</p>
+                      </div>
+                      <button
+                        type="button"
+                        className={styles.selectedPlanChange}
+                        onClick={() => setSelectedPlanId(null)}
+                        aria-label={`${t.contact.selectedPlan.change} — ${selectedPlanCopy.title}`}
+                      >
+                        {t.contact.selectedPlan.change}
+                      </button>
                     </motion.div>
                   )}
                 </AnimatePresence>

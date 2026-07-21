@@ -162,10 +162,16 @@ export const translations = {
       idealForLabel: 'Ideal para',
       includesLabel: 'Incluye',
       featuredLabel: 'Servicio premium',
-      requestPlan: 'Solicitar este plan',
+      requestPlan: 'Comenzar proyecto',
+      estimatedTimeLabel: 'Tiempo estimado',
+      customNeeds: {
+        heading: '¿Necesitas algo diferente?',
+        text: 'Si tu proyecto requiere funcionalidades específicas o un alcance distinto, prepararé una propuesta personalizada.',
+      },
       plans: {
         landing: {
           title: 'Landing Page',
+          estimatedTime: '2–3 semanas',
           idealFor: [
             'Marcas personales',
             'Emprendimientos',
@@ -187,6 +193,7 @@ export const translations = {
         },
         business: {
           title: 'Sitio Web Empresarial',
+          estimatedTime: '3–5 semanas',
           includes: [
             'Todo lo anterior',
             'Varias páginas',
@@ -199,6 +206,7 @@ export const translations = {
         },
         web3d: {
           title: 'Experiencia Web 3D',
+          estimatedTime: '6–10 semanas',
           includes: [
             'Objetos 3D personalizados',
             'Three.js',
@@ -211,6 +219,7 @@ export const translations = {
         },
         frontend: {
           title: 'Frontend para Aplicaciones',
+          estimatedTime: '4–8 semanas',
           includes: [
             'React',
             'Vite',
@@ -283,6 +292,11 @@ export const translations = {
           label: 'Mensaje',
           placeholder: 'Cuéntame los detalles de tu proyecto...',
         },
+      },
+      selectedPlan: {
+        label: 'Servicio seleccionado',
+        hint: 'Puedes cambiar de servicio en cualquier momento.',
+        change: 'Cambiar',
       },
       validation: {
         nameMin: 'Tu nombre debe tener al menos 2 caracteres',
@@ -475,11 +489,17 @@ export const translations = {
       priceFromLabel: 'Starting at',
       idealForLabel: 'Ideal for',
       includesLabel: 'Includes',
-      requestPlan: 'Request this plan',
+      requestPlan: 'Start project',
+      estimatedTimeLabel: 'Estimated time',
       featuredLabel: 'Premium service',
+      customNeeds: {
+        heading: 'Need something different?',
+        text: "If your project requires specific features or a different scope, I'll put together a custom proposal.",
+      },
       plans: {
         landing: {
           title: 'Landing Page',
+          estimatedTime: '2–3 weeks',
           idealFor: [
             'Personal brands',
             'Startups',
@@ -501,6 +521,7 @@ export const translations = {
         },
         business: {
           title: 'Business Website',
+          estimatedTime: '3–5 weeks',
           includes: [
             'Everything above',
             'Multiple pages',
@@ -513,6 +534,7 @@ export const translations = {
         },
         web3d: {
           title: '3D Web Experience',
+          estimatedTime: '6–10 weeks',
           includes: [
             'Custom 3D objects',
             'Three.js',
@@ -525,6 +547,7 @@ export const translations = {
         },
         frontend: {
           title: 'Frontend for Applications',
+          estimatedTime: '4–8 weeks',
           includes: [
             'React',
             'Vite',
@@ -597,6 +620,11 @@ export const translations = {
           label: 'Message',
           placeholder: 'Tell me the details of your project...',
         },
+      },
+      selectedPlan: {
+        label: 'Selected service',
+        hint: 'You can change your service at any time.',
+        change: 'Change',
       },
       validation: {
         nameMin: 'Your name must be at least 2 characters',

@@ -102,6 +102,26 @@
   height: 100%;
 }
 
+.customNeeds {
+  margin-top: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  max-width: 480px;
+}
+
+.customNeedsHeading {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.customNeedsText {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  line-height: var(--leading-relaxed);
+}
+
 .everyProject {
   margin-top: var(--space-9);
   max-width: 680px;

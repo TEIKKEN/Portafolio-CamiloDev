@@ -136,6 +136,11 @@ const Investment = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          <motion.div className={styles.customNeeds} {...fadeUp}>
+            <h4 className={styles.customNeedsHeading}>{inv.customNeeds.heading}</h4>
+            <p className={styles.customNeedsText}>{inv.customNeeds.text}</p>
+          </motion.div>
         </div>
 
         <PricingProcess />

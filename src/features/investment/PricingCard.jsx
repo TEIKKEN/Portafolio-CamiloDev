@@ -1,20 +1,23 @@
 import { memo } from 'react';
+import { Clock } from 'lucide-react';
 import Card from '@/components/ui/Card/Card';
 import Button from '@/components/ui/Button/Button';
+import Icon from '@/components/ui/Icon/Icon';
 import { getAccentVar } from '@/utils/accent';
-import { requestQuote } from '@/utils/quoteRequest';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
+import { useSelectedPlan } from '@/app/context/SelectedPlanContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import styles from './PricingCard.module.css';
 
 const PricingCard = ({ plan }) => {
   const { reducedMotion } = useAccessibility();
+  const { setSelectedPlanId } = useSelectedPlan();
   const { t } = useTranslation();
   const { id, priceFrom, accent, featured } = plan;
   const copy = t.investment.plans[id];
 
   const requestThisPlan = () => {
-    requestQuote(copy.title);
+    setSelectedPlanId(id);
     document
       .getElementById('contact')
       ?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
@@ -40,6 +43,12 @@ const PricingCard = ({ plan }) => {
           ${priceFrom.toLocaleString('en-US')}
         </span>
         <span className={styles.priceCurrency}>USD</span>
+      </p>
+
+      <p className={styles.estimatedTime}>
+        <Icon icon={Clock} size={14} />
+        <span className="visually-hidden">{t.investment.estimatedTimeLabel}: </span>
+        {copy.estimatedTime}
       </p>
 
       {copy.idealFor && (

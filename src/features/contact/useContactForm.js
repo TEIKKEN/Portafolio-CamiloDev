@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { getContactSchema } from './schema';
 import { useTranslation } from '@/hooks/useTranslation';
 import { checkRateLimit, recordAttempt } from '@/utils/rateLimiter';
-import { onQuoteRequest } from '@/utils/quoteRequest';
+import { useSelectedPlan } from '@/app/context/SelectedPlanContext';
 
 const FORMSPREE_ENDPOINT =
   import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/mlgqgpkp';
@@ -12,6 +12,7 @@ const MIN_SUBMIT_DELAY_MS = 1500; // menos que esto entre montar el form y envia
 
 export function useContactForm() {
   const { t, language } = useTranslation();
+  const { selectedPlanId } = useSelectedPlan();
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const mountedAt = useRef(Date.now());
@@ -32,17 +33,18 @@ export function useContactForm() {
   });
 
   // Si se llegó acá desde el botón "Solicitar este plan" de Investment,
-  // precarga el asunto con el nombre del plan. Contact casi siempre ya
-  // está montado cuando ocurre el click (prefetch secuencial), así que
-  // esto queda suscrito en vivo en vez de leer una sola vez al montar.
+  // precarga el asunto con el nombre del plan. Depende solo de
+  // `selectedPlanId` (no de `t`) para no pisar una edición manual del
+  // usuario cuando cambia de idioma con un plan ya seleccionado.
   useEffect(() => {
-    return onQuoteRequest((planTitle) => {
-      form.setValue('subject', planTitle, {
-        shouldValidate: false,
-        shouldDirty: false,
-      });
+    if (!selectedPlanId) return;
+    const planTitle = t.investment.plans[selectedPlanId]?.title;
+    if (!planTitle) return;
+    form.setValue('subject', planTitle, {
+      shouldValidate: false,
+      shouldDirty: false,
     });
-  }, [form]);
+  }, [selectedPlanId]);
 
   const onSubmit = useCallback(
     async (data) => {

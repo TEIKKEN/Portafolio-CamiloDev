@@ -10,6 +10,7 @@ import ErrorBoundary from '@/components/common/ErrorBoundary/ErrorBoundary';
 import { LanguageProvider } from '@/app/context/LanguageContext';
 import { AccessibilityProvider } from '@/app/context/AccessibilityContext';
 import { EcosystemActivityProvider } from '@/app/context/EcosystemActivityContext';
+import { SelectedPlanProvider } from '@/app/context/SelectedPlanContext';
 import { PageReadyProvider } from '@/app/context/PageReadyContext';
 import { reportWebVitals } from '@/utils/reportWebVitals';
 import App from './App';
@@ -21,9 +22,11 @@ createRoot(document.getElementById('root')).render(
         <LanguageProvider>
           <AccessibilityProvider>
             <EcosystemActivityProvider>
-              <PageReadyProvider>
-                <App />
-              </PageReadyProvider>
+              <SelectedPlanProvider>
+                <PageReadyProvider>
+                  <App />
+                </PageReadyProvider>
+              </SelectedPlanProvider>
             </EcosystemActivityProvider>
           </AccessibilityProvider>
         </LanguageProvider>
