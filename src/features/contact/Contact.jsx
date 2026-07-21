@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Send, Loader2, CheckCircle2, AlertCircle, ChevronDown, Check } from 'lucide-react';
 import Button from '@/components/ui/Button/Button';
 import Icon from '@/components/ui/Icon/Icon';
 import FormField from '@/components/ui/FormField/FormField';
@@ -21,12 +22,23 @@ const Contact = () => {
     handleSubmit,
     formState: { errors },
   } = form;
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   const isSubmitting = status === 'submitting';
   const transition = reducedMotion ? { duration: 0 } : { duration: 0.4, ease: [0.16, 1, 0.3, 1] };
 
   const selectedPlan = PRICING_PLANS.find((plan) => plan.id === selectedPlanId) ?? null;
   const selectedPlanCopy = selectedPlan ? t.investment.plans[selectedPlan.id] : null;
+
+  const pickPlan = (planId) => {
+    setSelectedPlanId(planId);
+    setIsPickerOpen(false);
+  };
+
+  const removeSelection = () => {
+    setSelectedPlanId(null);
+    setIsPickerOpen(false);
+  };
 
   return (
     <section className={`${styles.contact} section`} id="contact" aria-label={t.contact.eyebrow}>
@@ -104,25 +116,80 @@ const Contact = () => {
                       exit={{ opacity: 0, y: reducedMotion ? 0 : -10, scale: reducedMotion ? 1 : 0.98 }}
                       transition={transition}
                     >
-                      <span className={styles.selectedPlanDot} aria-hidden="true" />
-                      <div className={styles.selectedPlanInfo}>
-                        <span className={styles.selectedPlanLabel}>
-                          {t.contact.selectedPlan.label}
-                        </span>
-                        <p className={styles.selectedPlanName}>
-                          {selectedPlanCopy.title} — {t.investment.priceFromLabel} $
-                          {selectedPlan.priceFrom.toLocaleString('en-US')} USD
-                        </p>
-                        <p className={styles.selectedPlanHint}>{t.contact.selectedPlan.hint}</p>
+                      <div className={styles.selectedPlanRow}>
+                        <span className={styles.selectedPlanDot} aria-hidden="true" />
+                        <div className={styles.selectedPlanInfo}>
+                          <span className={styles.selectedPlanLabel}>
+                            {t.contact.selectedPlan.label}
+                          </span>
+                          <p className={styles.selectedPlanName}>
+                            {selectedPlanCopy.title} — {t.investment.priceFromLabel} $
+                            {selectedPlan.priceFrom.toLocaleString('en-US')} USD
+                          </p>
+                          <p className={styles.selectedPlanHint}>{t.contact.selectedPlan.hint}</p>
+                        </div>
+                        <button
+                          type="button"
+                          className={styles.selectedPlanChange}
+                          onClick={() => setIsPickerOpen((open) => !open)}
+                          aria-expanded={isPickerOpen}
+                          aria-controls="plan-picker-list"
+                          aria-label={`${t.contact.selectedPlan.change} — ${selectedPlanCopy.title}`}
+                        >
+                          {t.contact.selectedPlan.change}
+                          <Icon
+                            icon={ChevronDown}
+                            size={14}
+                            className={isPickerOpen ? styles.selectedPlanChangeIconOpen : undefined}
+                          />
+                        </button>
                       </div>
-                      <button
-                        type="button"
-                        className={styles.selectedPlanChange}
-                        onClick={() => setSelectedPlanId(null)}
-                        aria-label={`${t.contact.selectedPlan.change} — ${selectedPlanCopy.title}`}
-                      >
-                        {t.contact.selectedPlan.change}
-                      </button>
+
+                      <AnimatePresence>
+                        {isPickerOpen && (
+                          <motion.div
+                            id="plan-picker-list"
+                            className={styles.planPicker}
+                            initial={{ opacity: 0, y: reducedMotion ? 0 : -6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: reducedMotion ? 0 : -6 }}
+                            transition={transition}
+                          >
+                            <ul className={styles.planPickerList} aria-label={t.contact.selectedPlan.pickerLabel}>
+                              {PRICING_PLANS.map((plan) => {
+                                const planCopy = t.investment.plans[plan.id];
+                                const isCurrent = plan.id === selectedPlan.id;
+                                return (
+                                  <li key={plan.id}>
+                                    <button
+                                      type="button"
+                                      className={styles.planPickerItem}
+                                      style={{ '--plan-picker-accent': getAccentVar(plan.accent) }}
+                                      onClick={() => pickPlan(plan.id)}
+                                      aria-current={isCurrent ? 'true' : undefined}
+                                    >
+                                      <span className={styles.planPickerDot} aria-hidden="true" />
+                                      <span className={styles.planPickerName}>
+                                        {planCopy.title}
+                                        <span className={styles.planPickerPrice}>
+                                          {t.investment.priceFromLabel} $
+                                          {plan.priceFrom.toLocaleString('en-US')}
+                                        </span>
+                                      </span>
+                                      {isCurrent && (
+                                        <Icon icon={Check} size={16} className={styles.planPickerCheck} />
+                                      )}
+                                    </button>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                            <button type="button" className={styles.planPickerRemove} onClick={removeSelection}>
+                              {t.contact.selectedPlan.removeSelection}
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </motion.div>
                   )}
                 </AnimatePresence>

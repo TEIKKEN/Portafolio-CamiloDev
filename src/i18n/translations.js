@@ -297,6 +297,8 @@ export const translations = {
         label: 'Servicio seleccionado',
         hint: 'Puedes cambiar de servicio en cualquier momento.',
         change: 'Cambiar',
+        pickerLabel: 'Elegir otro plan',
+        removeSelection: 'Continuar sin un plan específico',
       },
       validation: {
         nameMin: 'Tu nombre debe tener al menos 2 caracteres',
@@ -625,6 +627,8 @@ export const translations = {
         label: 'Selected service',
         hint: 'You can change your service at any time.',
         change: 'Change',
+        pickerLabel: 'Choose a different plan',
+        removeSelection: 'Continue without a specific plan',
       },
       validation: {
         nameMin: 'Your name must be at least 2 characters',
