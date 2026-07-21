@@ -27,7 +27,7 @@ const PricingProcess = () => {
       >
         {steps.map((step, index) => (
           <ProcessStep
-            key={step.title}
+            key={index}
             step={step}
             index={index}
             reducedMotion={reducedMotion}
