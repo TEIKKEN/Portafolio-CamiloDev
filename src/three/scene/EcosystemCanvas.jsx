@@ -43,6 +43,7 @@ const EcosystemCanvas = ({ scrollRef, paused = false }) => {
           scrollRef={scrollRef}
           reducedMotion={reducedMotion}
           moduleCount={config.moduleCount}
+          radiusRange={config.radiusRange}
         />
         <CameraRig scrollRef={scrollRef} reducedMotion={reducedMotion} />
         {!reducedMotion && config.bloom && <EcosystemEffects />}

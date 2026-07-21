@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
-import { METAL_GREYS, ACTIVE_ACCENT, ACTIVE_RATIO } from '@/three/materials/moduleMaterial';
+import { METAL_GREYS, ACCENT_COLORS, ACTIVE_ACCENT, ACTIVE_RATIO } from '@/three/materials/moduleMaterial';
 import { useEcosystemActivity } from '@/app/context/EcosystemActivityContext';
 import ConnectionLines from './ConnectionLines';
 
@@ -22,13 +22,14 @@ function normalize(v) {
   return [v[0] / len, v[1] / len, v[2] / len];
 }
 
-function generateModules(count) {
+function generateModules(count, radiusRange = [0.85, 1.2]) {
+  const [radiusMin, radiusMax] = radiusRange;
   const CANDIDATE_POOL = count * 6;
   const candidates = [];
   for (let i = 0; i < CANDIDATE_POOL; i++) {
     const phi = Math.acos(1 - (2 * (i + 0.5)) / CANDIDATE_POOL);
     const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
-    const radius = 0.85 + Math.random() * 0.35;
+    const radius = radiusMin + Math.random() * (radiusMax - radiusMin);
     candidates.push([
       radius * Math.sin(phi) * Math.cos(theta),
       radius * Math.sin(phi) * Math.sin(theta) * 0.85,
@@ -61,14 +62,18 @@ function generateModules(count) {
       dims: isElongated ? [1, 1.2 + Math.random() * 0.3, 1] : [1, 1, 1],
       color: isActive ? '#3a3d40' : METAL_GREYS[Math.floor(Math.random() * METAL_GREYS.length)],
       isActive,
+      accentColor: isActive ? ACCENT_COLORS[Math.floor(Math.random() * ACCENT_COLORS.length)] : null,
       breathOffset: distFromCenter * 1.2,
     };
   });
 }
 
-const EcosystemObject = ({ mouseRef, scrollRef, reducedMotion, moduleCount = 26 }) => {
+const EcosystemObject = ({ mouseRef, scrollRef, reducedMotion, moduleCount = 26, radiusRange }) => {
   const groupRef = useRef();
-  const modules = useMemo(() => generateModules(moduleCount), [moduleCount]);
+  const modules = useMemo(
+    () => (radiusRange ? generateModules(moduleCount, radiusRange) : generateModules(moduleCount)),
+    [moduleCount, radiusRange]
+  );
   const blockRefs = useRef([]);
   const materialStateRef = useRef([]);
   const { activeMode } = useEcosystemActivity();
@@ -121,7 +126,7 @@ const EcosystemObject = ({ mouseRef, scrollRef, reducedMotion, moduleCount = 26 
       if (!material) return;
 
       let targetIntensity = mod.isActive ? 0.4 : 0;
-      let targetEmissiveHex = mod.isActive ? ACTIVE_ACCENT : '#000000';
+      let targetEmissiveHex = mod.isActive ? mod.accentColor : '#000000';
 
       if (frontendBoostRef.current > 0.01) {
         targetIntensity = THREE.MathUtils.lerp(targetIntensity, 0.32, frontendBoostRef.current);
@@ -161,7 +166,7 @@ const EcosystemObject = ({ mouseRef, scrollRef, reducedMotion, moduleCount = 26 
             metalness={1}
             roughness={0.45}
             envMapIntensity={1.15}
-            emissive={mod.isActive ? ACTIVE_ACCENT : '#000000'}
+            emissive={mod.isActive ? mod.accentColor : '#000000'}
             emissiveIntensity={mod.isActive ? 0.4 : 0}
           />
         </RoundedBox>
