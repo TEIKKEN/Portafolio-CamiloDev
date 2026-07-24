@@ -8,16 +8,22 @@ import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import styles from './FeaturedProjectCard.module.css';
 
+const AUDIO_FADE_IN_MS = 350;
+const AUDIO_FADE_OUT_MS = 300;
+const AUDIO_TARGET_VOLUME = 0.4;
+
 const FeaturedProjectCard = ({ project }) => {
   const { t } = useTranslation();
   const { reducedMotion } = useAccessibility();
-  const { id, title, image, video, demoUrl, tech, status, accent } = project;
+  const { id, title, image, video, audio, demoUrl, tech, status, accent } = project;
   const copy = t.projects.items[id];
 
   const [hovering, setHovering] = useState(false);
   const [focused, setFocused] = useState(false);
   const [manuallyPlaying, setManuallyPlaying] = useState(false);
   const videoRef = useRef(null);
+  const audioRef = useRef(null);
+  const fadeFrameRef = useRef(null);
 
   const isPlaying = manuallyPlaying || (!reducedMotion && (hovering || focused));
 
@@ -33,6 +39,36 @@ const FeaturedProjectCard = ({ project }) => {
     } else {
       videoEl.pause();
     }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (!audioEl) return;
+
+    cancelAnimationFrame(fadeFrameRef.current);
+
+    const startVolume = audioEl.volume;
+    const targetVolume = isPlaying ? AUDIO_TARGET_VOLUME : 0;
+    const duration = isPlaying ? AUDIO_FADE_IN_MS : AUDIO_FADE_OUT_MS;
+    const startTime = performance.now();
+
+    if (isPlaying) {
+      audioEl.play().catch(() => {});
+    }
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(Math.max(elapsed / duration, 0), 1);
+      audioEl.volume = startVolume + (targetVolume - startVolume) * progress;
+      if (progress < 1) {
+        fadeFrameRef.current = requestAnimationFrame(step);
+      } else if (!isPlaying) {
+        audioEl.pause();
+      }
+    };
+    fadeFrameRef.current = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(fadeFrameRef.current);
   }, [isPlaying]);
 
   return (
@@ -63,6 +99,7 @@ const FeaturedProjectCard = ({ project }) => {
           className={styles.video}
           data-hidden={!isPlaying}
         />
+        <audio ref={audioRef} src={audio} loop preload="none" />
 
         <button
           type="button"
