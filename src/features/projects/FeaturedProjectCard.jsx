@@ -1,25 +1,78 @@
-import { memo } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
+import Icon from '@/components/ui/Icon/Icon';
 import Tag from '@/components/ui/Tag/Tag';
 import Button from '@/components/ui/Button/Button';
 import { getAccentVar } from '@/utils/accent';
+import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import styles from './FeaturedProjectCard.module.css';
 
 const FeaturedProjectCard = ({ project }) => {
   const { t } = useTranslation();
-  const { id, title, image, demoUrl, tech, status, accent } = project;
+  const { reducedMotion } = useAccessibility();
+  const { id, title, image, video, demoUrl, tech, status, accent } = project;
   const copy = t.projects.items[id];
+
+  const [hovering, setHovering] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [manuallyPlaying, setManuallyPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const isPlaying = manuallyPlaying || (!reducedMotion && (hovering || focused));
+
+  const handleToggle = useCallback(() => {
+    setManuallyPlaying((prev) => !prev);
+  }, []);
+
+  useEffect(() => {
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
+    if (isPlaying) {
+      videoEl.play().catch(() => {});
+    } else {
+      videoEl.pause();
+    }
+  }, [isPlaying]);
 
   return (
     <article className={styles.card} style={{ '--card-accent': getAccentVar(accent) }}>
-      <div className={styles.media}>
+      <div
+        className={styles.media}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+      >
         <img
           src={image}
           alt={`${title} — ${copy.tagline}`}
           loading="lazy"
           decoding="async"
           className={styles.image}
+          data-hidden={isPlaying}
         />
+        <video
+          ref={videoRef}
+          src={video}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          className={styles.video}
+          data-hidden={!isPlaying}
+        />
+
+        <button
+          type="button"
+          className={styles.audioToggle}
+          onClick={handleToggle}
+          aria-pressed={isPlaying}
+        >
+          <Icon icon={isPlaying ? Volume2 : VolumeX} size={16} />
+          {isPlaying ? t.projects.stopExperience : t.projects.playExperience}
+        </button>
       </div>
 
       <div className={styles.body}>
