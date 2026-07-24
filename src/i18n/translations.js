@@ -47,6 +47,9 @@ export const translations = {
       viewDemo: 'Ver demo',
       code: 'Código',
       status: { live: 'En producción', wip: 'En desarrollo' },
+      featuredLabel: 'Proyecto destacado',
+      playExperience: 'Reproducir experiencia',
+      stopExperience: 'Detener experiencia',
       items: {
         inclusia: {
           tagline: 'Landing page institucional — 100% accesible',
@@ -69,6 +72,11 @@ export const translations = {
           tagline: 'Fleet Management',
           description:
             'Aplicación web para la gestión de ingresos, gastos y operaciones de una flota de camiones. Permite registrar movimientos financieros, organizar categorías y obtener una visión clara del estado económico del negocio.',
+        },
+        cosmos: {
+          tagline: 'Viaje cinematográfico por el Sistema Solar',
+          description:
+            'Experiencia web inmersiva donde cada planeta transforma en tiempo real la paleta, las partículas y la iluminación de toda la interfaz. Incluye un carrusel 3D con planetas texturizados, fondo galáctico procedural con nebulosas en capas, y diseño de sonido reactivo a la interacción.',
         },
       },
     },
@@ -379,6 +387,9 @@ export const translations = {
       viewDemo: 'View demo',
       code: 'Code',
       status: { live: 'Live', wip: 'In progress' },
+      featuredLabel: 'Featured project',
+      playExperience: 'Play experience',
+      stopExperience: 'Stop experience',
       items: {
         inclusia: {
           tagline: 'Institutional landing page — fully accessible',
@@ -401,6 +412,11 @@ export const translations = {
           tagline: 'Fleet Management',
           description:
             "A web app for managing income, expenses, and operations for a truck fleet. Lets users log financial movements, organize categories, and get a clear view of the business's financial health.",
+        },
+        cosmos: {
+          tagline: 'A cinematic journey through the Solar System',
+          description:
+            "An immersive web experience where every planet reshapes the page's palette, particles, and lighting in real time. Featuring a 3D carousel of textured planets, a procedural galactic background with layered nebulae, and sound design that reacts to interaction.",
         },
       },
     },
