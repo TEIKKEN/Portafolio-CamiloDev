@@ -4,6 +4,7 @@ import { PROJECTS } from '@/data/projects';
 import { useAccessibility } from '@/app/context/AccessibilityContext';
 import { useTranslation } from '@/hooks/useTranslation';
 import ProjectCard from './ProjectCard';
+import FeaturedProjectCard from './FeaturedProjectCard';
 import styles from './Projects.module.css';
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
@@ -20,14 +21,18 @@ const Projects = () => {
   const { reducedMotion } = useAccessibility();
   const { t } = useTranslation();
   const itemVariants = useMemo(() => createItemVariants(reducedMotion), [reducedMotion]);
+
+  const regularProjects = useMemo(() => PROJECTS.filter((project) => !project.featured), []);
+  const featuredProjects = useMemo(() => PROJECTS.filter((project) => project.featured), []);
+
   const renderedProjects = useMemo(
     () =>
-      PROJECTS.map((project, index) => (
+      regularProjects.map((project, index) => (
         <motion.div key={project.id} variants={itemVariants}>
           <ProjectCard project={project} index={index} />
         </motion.div>
       )),
-    [itemVariants]
+    [itemVariants, regularProjects]
   );
 
   return (
@@ -51,6 +56,10 @@ const Projects = () => {
         >
           {renderedProjects}
         </motion.div>
+
+        {featuredProjects.map((project) => (
+          <FeaturedProjectCard key={project.id} project={project} />
+        ))}
       </div>
     </section>
   );
