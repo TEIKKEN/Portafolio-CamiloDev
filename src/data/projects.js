@@ -2,6 +2,9 @@ import ajtrucksImg from '@/assets/images/AJTRUCKS.png';
 import brutalcalcImg from '@/assets/images/BrutalCalc.png';
 import fallosistemaImg from '@/assets/images/Fallodelsistema.png';
 import inclusiaImg from '@/assets/images/Inclusiaweb.png';
+import cosmosImg from '@/assets/images/Cosmos.png';
+import cosmosVideo from '@/assets/Video/Cosmos.mp4';
+import cosmosAudio from '@/assets/Sound/space ambience.mp3';
 
 export const PROJECTS = [
   {
@@ -43,5 +46,18 @@ export const PROJECTS = [
     status: 'live',
     accent: 'amber',
     tech: ['React', 'Vite', 'CSS', 'JavaScript'],
+  },
+  {
+    id: 'cosmos',
+    title: 'Cosmos',
+    image: cosmosImg,
+    video: cosmosVideo,
+    audio: cosmosAudio,
+    demoUrl: 'https://cosmos-nine-iota.vercel.app/',
+    githubUrl: null,
+    status: 'wip',
+    accent: 'cyan',
+    featured: true,
+    tech: ['React', 'Three.js', 'React Three Fiber', 'GSAP', 'Zustand', 'Howler.js'],
   },
 ];
